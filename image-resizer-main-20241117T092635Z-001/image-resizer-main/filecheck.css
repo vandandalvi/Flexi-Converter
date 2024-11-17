@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(to right, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    opacity: 0; /* Initial opacity for fade-in */
+    transform: translateY(30px); /* Slight downward start position */
+    animation: fadeIn 1s ease-out forwards; /* Fade-in animation */
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    color: #ff6b6b;
+}
+
+input[type="file"] {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 4px 8px;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+    cursor: pointer;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    color: #333;
+}
+
+input[type="file"]:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 6px 12px;
+}
+
+#fileDetails {
+    margin-top: 1rem;
+    text-align: center;
+    opacity: 0; /* Initial opacity for fade-in */
+    animation: fadeIn 1.5s ease-out forwards; /* Delayed fade-in for file details */
+    animation-delay: 0.5s; /* Delay after container */
+}
+
+.file-info {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: #ffe9e9;
+    padding: 10px;
+    border-radius: 5px;
+    color: #555;
+}
+
+.file-info strong {
+    display: inline-block;
+    color: #333;
+}
+
+/* Center Home Button */
+.button-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Styled Home Button */
+.home-button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(to right, #fcb69f, #ff6b6b);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-button:hover {
+    background: linear-gradient(to right, #ff6b6b, #ff9a9e);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Reset position */
+    }
+}
