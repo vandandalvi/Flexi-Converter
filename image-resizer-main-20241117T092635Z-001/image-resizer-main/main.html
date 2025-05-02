@@ -3,153 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Tools Dashboard</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
-    <link rel="icon" href="flexiconverter.jpg" type="image/x-icon">
+    <title>My Projects Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/edc4ce6fd9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
-        /* General Styles */
-        body {
+        :root {
+            --primary-color: #3a0ca3;
+            --secondary-color: #4361ee;
+            --accent-color: #7209b7;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --warning-color: #f72585;
+        }
+
+        * {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #960000, #000000);
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-
-
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: var(--light-color);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #4cc9f0, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            animation: slideUp 0.8s ease;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            z-index: 0;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--success-color);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            width: 90%;
-            max-width: 1200px;
+        .card-link:hover {
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.4);
         }
 
-        .box {
-            background: linear-gradient(135deg, #ff6f61, #ff9478);
-            border-radius: 15px;
-            padding: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .card-link:active {
+            transform: scale(0.95);
         }
 
-        .box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .box:nth-child(2) {
-            background: linear-gradient(135deg, #6b5b95, #8f7fa5);
-        }
-
-        .box:nth-child(3) {
-            background: linear-gradient(135deg, #88b04b, #a2c672);
-        }
-
-        .box:nth-child(4) {
-            background: linear-gradient(135deg, #5e6651, #79866d);
-        }
-
-        .box:nth-child(5) {
-            background: linear-gradient(135deg, #50948e, #73b1aa);
-        }
-
-        .box:nth-child(6) {
-            background: linear-gradient(135deg, #644597, #8568b0);
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.8em;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-            transition: text-shadow 0.3s ease;
-        }
-
-        a:hover {
-            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .loader {
+        .card-link .loader {
             position: absolute;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top: 4px solid white;
+            border-top-color: white;
+            display: none;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
             width: 40px;
             height: 40px;
-            animation: spin 1s linear infinite;
-            display: none;
-            z-index: 2;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
+        /* Card hover effects */
+        .project-card:nth-child(1):hover {
+            background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(76, 201, 240, 0.3));
+        }
+
+        .project-card:nth-child(2):hover {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(67, 97, 238, 0.3));
+        }
+
+        .project-card:nth-child(3):hover {
+            background: linear-gradient(135deg, rgba(114, 9, 183, 0.1), rgba(114, 9, 183, 0.3));
+        }
+
+        .project-card:nth-child(4):hover {
+            background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(247, 37, 133, 0.3));
+        }
+
+        .project-card:nth-child(5):hover {
+            background: linear-gradient(135deg, rgba(58, 12, 163, 0.1), rgba(58, 12, 163, 0.3));
+        }
+
+        .project-card:nth-child(6):hover {
+            background: linear-gradient(135deg, rgba(255, 200, 87, 0.1), rgba(255, 200, 87, 0.3));
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
             }
 
-            a {
-                font-size: 1.5em;
+            .header h1 {
+                font-size: 2rem;
             }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .project-card {
+                height: 180px;
+            }
+
+            .card-icon {
+                font-size: 1.7rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            .card-description {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                height: auto;
+                min-height: 160px;
+            }
+
+            .header h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Dark/Light theme variables */
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: var(--dark-color);
+        }
+
+        body.light-theme .project-card {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-theme .card-description {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        body.light-theme .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--dark-color);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="box" data-url="index.html">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, 'index.html')">Image Resizer</a>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header class="header">
+        <h1>My Projects Hub</h1>
+        <p>A collection of applications I developed over 4 years of study.</p>
+        <p>(Only WebProjects)</p>
+    </header>
+
+    <main class="projects-grid">
+        <div class="project-card" data-url="techmatch.html">
+            <div class="card-content">
+                <div>
+                    <i class="fa-solid fa-book-open-reader card-icon"></i>
+                    <h2 class="card-title">Tech Match</h2>
+                    <p class="card-description">Find Fav Tech Career using ML</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/ML-PROJECT-/Miniproject/1pg.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <div class="box" data-url="translator.html">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, 'translator.html')">Language Translator</a>
+
+        <div class="project-card" data-url="translator.html">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-language card-icon"></i>
+                    <h2 class="card-title">Language Translator</h2>
+                    <p class="card-description">Translate text between multiple languages instantly</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'translator.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <div class="box" data-url="filecheck.html">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, 'filecheck.html')">File Details Checker</a>
+
+        <div class="project-card" data-url="index.html">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-image card-icon"></i>
+                    <h2 class="card-title">Image Resizer</h2>
+                    <p class="card-description">Resize and optimize your images quickly and easily</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'index.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <div class="box" data-url="imagedit.html">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, 'imagedit.html')">Image Editor</a>
+
+        <div class="project-card" data-url="imagedit.html">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-brush card-icon"></i>
+                    <h2 class="card-title">Image Editor</h2>
+                    <p class="card-description">Edit and enhance your images with powerful tools</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'imagedit.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <div class="box" data-url="#">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, 'foodcolarie.html')">Food Calorie </a>
+
+        <div class="project-card" data-url="weather-app">
+            <div class="card-content">
+                <div>
+                    <i class="fa-solid fa-cloud-sun card-icon"></i>
+                    <h2 class="card-title">Weather Forecast</h2>
+                    <p class="card-description">Get real-time weather updates</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/weatherApp/wetherapp/weatherapp.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <div class="box" data-url="#">
-            <div class="loader"></div>
-            <a href="#" onclick="handleClick(event, '#')">Coming Soon...</a>
+
+        <div class="project-card" data-url="filecheck.html">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-file-alt card-icon"></i>
+                    <h2 class="card-title">File Details Checker</h2>
+                    <p class="card-description">View detailed information about your files</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'filecheck.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-    </div>
+
+        <div class="project-card" data-url="foodcolarie.html">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-utensils card-icon"></i>
+                    <h2 class="card-title">Food Calorie</h2>
+                    <p class="card-description">Track and calculate calories in your meals</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'foodcolarie.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
+        </div>
+        <div class="project-card" data-url="rps-game">
+            <div class="card-content">
+                <div>
+                    <i class="fa-solid fa-hand-scissors card-icon"></i>
+                    <h2 class="card-title">Rock Paper Scissors</h2>
+                    <p class="card-description">Play the classic game online</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/Games/games/functions.html')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card" data-url="#">
+            <div class="card-content">
+                <div>
+                    <i class="fas fa-rocket card-icon"></i>
+                    <h2 class="card-title">Coming Soon</h2>
+                    <p class="card-description">New exciting project under development</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, '#')" style="background: linear-gradient(to right, #6c757d, #495057);">
+                    Stay Tuned
+                    <span class="loader"></span>
+                </a>
+            </div>
+          </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Vandan Dalvi . All rights reserved.</p>
+    </footer>
 
     <script>
+        // Project link click handler with loading animation
         function handleClick(event, url) {
+            if (url === '#') return;
+            
             event.preventDefault();
-            var box = event.currentTarget.closest('.box');
-            var loader = box.querySelector('.loader');
-            var link = box.querySelector('a');
+            const link = event.currentTarget;
+            const loader = link.querySelector('.loader');
+            const originalText = link.textContent.trim();
+            
+            // Show loader
             loader.style.display = 'block';
-            link.style.visibility = 'hidden';
-            setTimeout(function() {
+            link.textContent = '';
+            
+            // Navigate after slight delay to show animation
+            setTimeout(() => {
                 window.location.href = url;
-            }, 1000);
+            }, 800);
         }
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            
+            if (document.body.classList.contains('light-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Add staggered animation to project cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
     </script>
 </body>
 </html>
