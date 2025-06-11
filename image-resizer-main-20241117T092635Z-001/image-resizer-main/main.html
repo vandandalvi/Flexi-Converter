@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/edc4ce6fd9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
         :root {
             --primary-color: #3a0ca3;
@@ -193,23 +195,31 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-            to { 
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
         @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         /* Card hover effects */
@@ -306,6 +316,7 @@
         }
     </style>
 </head>
+
 <body>
     <button class="theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i>
@@ -325,7 +336,8 @@
                     <h2 class="card-title">Tech Match</h2>
                     <p class="card-description">Find Fav Tech Career using ML</p>
                 </div>
-                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/ML-PROJECT-/Miniproject/1pg.html')">
+                <a href="#" class="card-link"
+                    onclick="handleClick(event, 'https://vandandalvi.github.io/ML-PROJECT-/Miniproject/1pg.html')">
                     Open Tool
                     <span class="loader"></span>
                 </a>
@@ -333,18 +345,18 @@
         </div>
 
         <div class="project-card" data-url="Vandan'sstore.html">
-    <div class="card-content">
-        <div>
-            <i class="fa-solid fa-cart-shopping card-icon"></i>
-            <h2 class="card-title">Vandan's Ecom</h2>
-            <p class="card-description">Handpicked Product, Hassle-Free Shipping</p>
+            <div class="card-content">
+                <div>
+                    <i class="fa-solid fa-cart-shopping card-icon"></i>
+                    <h2 class="card-title">Vandan's Ecom</h2>
+                    <p class="card-description">Handpicked Product, Hassle-Free Shipping</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'https://tinyurl.com/cd8pcsce')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
         </div>
-        <a href="#" class="card-link" onclick="handleClick(event, 'https://tinyurl.com/cd8pcsce')">
-            Open Tool
-            <span class="loader"></span>
-        </a>
-    </div>
-</div>
 
 
         <div class="project-card" data-url="translator.html">
@@ -360,6 +372,21 @@
                 </a>
             </div>
         </div>
+
+        <div class="project-card" data-url="rps-game">
+            <div class="card-content">
+                <div>
+                    <i class="fa-solid fa-camera card-icon"></i>
+                    <h2 class="card-title">IMG OCR</h2>
+                    <p class="card-description">Place camera near question, get AI answer in seconds.</p>
+                </div>
+                <a href="#" class="card-link" onclick="handleClick(event, 'https://image-ocr-1.onrender.com/')">
+                    Open Tool
+                    <span class="loader"></span>
+                </a>
+            </div>
+        </div>
+
 
         <div class="project-card" data-url="index.html">
             <div class="card-content">
@@ -396,7 +423,8 @@
                     <h2 class="card-title">Weather Forecast</h2>
                     <p class="card-description">Get real-time weather updates</p>
                 </div>
-                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/weatherApp/wetherapp/weatherapp.html')">
+                <a href="#" class="card-link"
+                    onclick="handleClick(event, 'https://vandandalvi.github.io/weatherApp/wetherapp/weatherapp.html')">
                     Open Tool
                     <span class="loader"></span>
                 </a>
@@ -437,7 +465,8 @@
                     <h2 class="card-title">Rock Paper Scissors</h2>
                     <p class="card-description">Play the classic game online</p>
                 </div>
-                <a href="#" class="card-link" onclick="handleClick(event, 'https://vandandalvi.github.io/Games/games/functions.html')">
+                <a href="#" class="card-link"
+                    onclick="handleClick(event, 'https://vandandalvi.github.io/Games/games/functions.html')">
                     Open Tool
                     <span class="loader"></span>
                 </a>
@@ -451,12 +480,13 @@
                     <h2 class="card-title">Coming Soon</h2>
                     <p class="card-description">New exciting project under development</p>
                 </div>
-                <a href="#" class="card-link" onclick="handleClick(event, '#')" style="background: linear-gradient(to right, #6c757d, #495057);">
+                <a href="#" class="card-link" onclick="handleClick(event, '#')"
+                    style="background: linear-gradient(to right, #6c757d, #495057);">
                     Stay Tuned
                     <span class="loader"></span>
                 </a>
             </div>
-          </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -467,16 +497,16 @@
         // Project link click handler with loading animation
         function handleClick(event, url) {
             if (url === '#') return;
-            
+
             event.preventDefault();
             const link = event.currentTarget;
             const loader = link.querySelector('.loader');
             const originalText = link.textContent.trim();
-            
+
             // Show loader
             loader.style.display = 'block';
             link.textContent = '';
-            
+
             // Navigate after slight delay to show animation
             setTimeout(() => {
                 window.location.href = url;
@@ -486,10 +516,10 @@
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
-        
+
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-theme');
-            
+
             if (document.body.classList.contains('light-theme')) {
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
@@ -502,11 +532,12 @@
         // Add staggered animation to project cards
         document.addEventListener('DOMContentLoaded', () => {
             const projectCards = document.querySelectorAll('.project-card');
-            
+
             projectCards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });
         });
     </script>
 </body>
+
 </html>
